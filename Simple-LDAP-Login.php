@@ -490,7 +490,10 @@ class SimpleLDAPLogin {
 			$user_data['display_name']	= $userinfo[trim($this->get_setting('user_first_name_attribute'))][0] . ' ' . $userinfo[trim($this->get_setting('user_last_name_attribute'))][0];
 			$user_data['first_name']	= $userinfo[trim($this->get_setting('user_first_name_attribute'))][0];
 			$user_data['last_name'] 	= $userinfo[trim($this->get_setting('user_last_name_attribute'))][0];
-			$user_data['user_url'] 		= $userinfo[trim($this->get_setting('user_url_attribute'))][0];
+			
+			if(isset($userinfo[trim($this->get_setting('user_url_attribute'))])){
+				$user_data['user_url'] = $userinfo[trim($this->get_setting('user_url_attribute'))][0];
+			}
 		}
 
 		return apply_filters($this->prefix . 'user_data', $user_data);
